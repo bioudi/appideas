@@ -1,16 +1,19 @@
 <template>
-  <div>
-    
-  </div>
+  <div></div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { ideasStore } from "~/store";
 
-@Component
+@Component({
+  asyncData(ctx) {
+    return ideasStore.getIdeas();
+  }
+})
 export default class IdeasPage extends Vue {
-  mounted() {
-    this.$axios.get('ideas');
+  get ideas(): any {
+    return ideasStore.ideas;
   }
 }
 </script>

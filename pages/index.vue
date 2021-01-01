@@ -28,16 +28,10 @@
 </template>
 
 <script lang="ts">
-<<<<<<< Updated upstream
-import Vue from 'vue'
-
-export default Vue.extend({})
-=======
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class Index extends Vue {}
->>>>>>> Stashed changes
 </script>
 
 <style>
