@@ -145,52 +145,6 @@
           </div>
         </div>
       </div>
-      <div class="mt-12 xl:mt-0">
-        <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-          Language &amp; Currency
-        </h3>
-        <form class="mt-4 sm:max-w-xs">
-          <fieldset class="w-full">
-            <label for="language" class="sr-only">Language</label>
-            <div class="relative">
-              <select id="language" name="language" class="appearance-none block w-full bg-none bg-gray-700 border border-transparent rounded-md py-2 pl-3 pr-10 text-base text-white focus:outline-none focus:ring-white focus:border-white sm:text-sm">
-                <option selected>English</option>
-                <option>French</option>
-                <option>German</option>
-                <option>Japanese</option>
-                <option>Spanish</option>
-              </select>
-              <div class="pointer-events-none absolute inset-y-0 right-0 px-2 flex items-center">
-                <!-- Heroicon name: chevron-down -->
-                <svg class="h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-              </div>
-            </div>
-          </fieldset>
-          <fieldset class="mt-4 w-full">
-            <label for="currency" class="sr-only">Currency</label>
-            <div class="mt-1.5 relative">
-              <select id="currency" name="currency" class="appearance-none w-full bg-none bg-gray-700 border border-transparent rounded-md block py-2 pl-3 pr-10 text-base text-white focus:outline-none focus:ring-white focus:border-white sm:text-sm">
-                <option>ARS</option>
-                <option selected>AUD</option>
-                <option>CAD</option>
-                <option>CHF</option>
-                <option>EUR</option>
-                <option>GBP</option>
-                <option>JPY</option>
-                <option>USD</option>
-              </select>
-              <div class="pointer-events-none absolute inset-y-0 right-0 px-2 flex items-center">
-                <!-- Heroicon name: chevron-down -->
-                <svg class="h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-              </div>
-            </div>
-          </fieldset>
-        </form>
-      </div>
     </div>
     <div class="border-t border-gray-700 pt-8 lg:flex lg:items-center lg:justify-between xl:mt-0">
       <div>
