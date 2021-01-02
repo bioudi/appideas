@@ -220,11 +220,12 @@ export default class LoginPage extends Vue {
           password: this.password
         }
       })
-      .then(response => {
+      .then((response: any) => {
         if (response.status === 200) this.$router.push({ name: "ideas" });
       })
       .catch(error => {
-        if (error.response.status === 401) this.errors = ['Invalid login credentials'];
+        if (error.response.status === 401)
+          this.errors = ["Invalid login credentials"];
       });
   }
 }
