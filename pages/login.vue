@@ -29,7 +29,10 @@
       </h2>
       <p class="mt-2 text-center text-sm text-gray-600 max-w">
         Or
-        <router-link :to="{ name: 'register' }" class="font-medium text-indigo-600 hover:text-indigo-500">
+        <router-link
+          :to="{ name: 'register' }"
+          class="font-medium text-indigo-600 hover:text-indigo-500"
+        >
           Create an account
         </router-link>
       </p>
@@ -110,6 +113,11 @@
             >
               Login
             </button>
+          </div>
+          <div v-show="errors.length">
+            <ul class="bg-red-500 text-gray-100 rounded-sm py-3 px-2">
+              <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+            </ul>
           </div>
         </form>
 
@@ -200,17 +208,24 @@ import { Component, Vue } from "vue-property-decorator";
   middleware: "guest"
 })
 export default class LoginPage extends Vue {
-  email: string = "ashtyn.spinka@example.com";
-  password: string = "password";
+  email: string = "";
+  password: string = "";
+  errors: string[] = [];
 
-  async login() {
-    const response: any = await this.$auth.loginWith("laravelJWT", {
-      data: {
-        email: this.email,
-        password: this.password
-      }
-    });
-    if (response.status === 200) this.$router.push({ name: "ideas" });
+  login() {
+    this.$auth
+      .loginWith("laravelJWT", {
+        data: {
+          email: this.email,
+          password: this.password
+        }
+      })
+      .then(response => {
+        if (response.status === 200) this.$router.push({ name: "ideas" });
+      })
+      .catch(error => {
+        if (error.response.status === 401) this.errors = ['Invalid login credentials'];
+      });
   }
 }
 </script>

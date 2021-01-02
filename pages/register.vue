@@ -29,7 +29,10 @@
       </h2>
       <p class="mt-2 text-center text-sm text-gray-600 max-w">
         Or
-        <router-link :to="{ name: 'login' }" class="font-medium text-indigo-600 hover:text-indigo-500">
+        <router-link
+          :to="{ name: 'login' }"
+          class="font-medium text-indigo-600 hover:text-indigo-500"
+        >
           Sign in to your account
         </router-link>
       </p>
@@ -41,7 +44,7 @@
           class="space-y-6"
           action="#"
           method="POST"
-          @submit.prevent="login"
+          @submit.prevent="register"
         >
           <div>
             <label for="name" class="block text-sm font-medium text-gray-700">
@@ -104,7 +107,7 @@
             </label>
             <div class="mt-1">
               <input
-                v-model="password"
+                v-model="passwordConfirmation"
                 id="password_confirmation"
                 name="password_confirmation"
                 type="password"
@@ -144,6 +147,11 @@
             >
               Sign up
             </button>
+          </div>
+          <div v-show="Object.keys(validationErrors).length">
+              <ul class="bg-red-500 text-gray-100 rounded-sm py-3 px-2">
+                  <li v-for="(error, index) in validationErrorsMessages" :key="index">{{ error }}</li>
+              </ul>
           </div>
         </form>
 
@@ -237,15 +245,39 @@ export default class RegisterPage extends Vue {
   name: string = "";
   email: string = "";
   password: string = "";
+  passwordConfirmation: string = "";
+  validationErrors: any = {};
 
-  async login() {
-    const response: any = await this.$auth.loginWith("laravelJWT", {
-      data: {
+  get validationErrorsMessages(): any {
+    let messages: string[] = [];
+    Object.keys(this.validationErrors).forEach(key =>
+      messages.push(...this.validationErrors[key])
+    );
+    return messages;
+  }
+
+  async register() {
+    this.validationErrors = {};
+    this.$axios
+      .post("/auth/register", {
+        name: this.name,
         email: this.email,
-        password: this.password
-      }
-    });
-    if (response.status === 200) this.$router.push({ name: "ideas" });
+        password: this.password,
+        password_confirmation: this.passwordConfirmation
+      })
+      .then(async response => {
+        await this.$auth.loginWith("laravelJWT", {
+          data: {
+            email: this.email,
+            password: this.password
+          }
+        });
+        if (response.status === 200) this.$router.push({ name: "ideas" });
+      })
+      .catch(error => {
+        if (error.response.status === 422)
+          this.validationErrors = error.response.data.errors;
+      });
   }
 }
 </script>
