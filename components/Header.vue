@@ -74,10 +74,11 @@
                 >Company</a
               >
 
-              <a
-                href="#"
+              <router-link
+                v-if="!$auth.loggedIn"
+                :to="{ name: 'login' }"
                 class="font-medium text-indigo-600 hover:text-indigo-500"
-                >Log in</a
+                >Log in</router-link
               >
             </div>
           </nav>

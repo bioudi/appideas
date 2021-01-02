@@ -1,6 +1,6 @@
 <template>
-  <div class="flex">
-    <div class="p-4 w-2/6">
+  <div class="flex p-6">
+    <div class="px-4 w-2/6">
       <span class="text-base font-medium text-gray-900">Type: </span>
       <div class="relative flex items-start mt-4 mb-1">
         <div class="flex items-center h-5">

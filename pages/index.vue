@@ -7,17 +7,8 @@
 </template>
 
 <script lang="ts">
-import Header from "~/components/Header.vue";
-import Features from "~/components/Features.vue";
-import Footer from "~/components/Footer.vue";
 import { Component, Vue } from "vue-property-decorator";
 
-@Component({
-  components: {
-    Header,
-    Features,
-    Footer
-  }
-})
+@Component
 export default class Index extends Vue {}
 </script>

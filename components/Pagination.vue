@@ -1,7 +1,7 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
   <nav
-    class="border-t border-gray-200 flex items-center justify-between pb-4"
+    class="border-t border-gray-200 flex items-center justify-between"
   >
     <div class="-mt-px w-0 flex-1 flex">
       <a
