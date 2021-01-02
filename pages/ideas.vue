@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <IdeasList></IdeasList>
 </template>
 
 <script lang="ts">
@@ -8,12 +8,8 @@ import { ideasStore } from "~/store";
 
 @Component({
   asyncData(ctx) {
-    return ideasStore.getIdeas();
+    return ideasStore.getIdeas({ page: 1 });
   }
 })
-export default class IdeasPage extends Vue {
-  get ideas(): any {
-    return ideasStore.ideas;
-  }
-}
+export default class IdeasPage extends Vue {}
 </script>

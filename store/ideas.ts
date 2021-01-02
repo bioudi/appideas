@@ -8,16 +8,22 @@ import { $axios } from "~/utils/api";
 })
 class IdeaModule extends VuexModule {
   ideas: any = [];
+  pagination: Object = {};
 
   @Mutation
-  setIdeas(ideas: any) {
-    this.ideas = ideas;
+  setIdeas(response: any) {
+    this.ideas = response.ideas;
+    this.pagination = response.meta;
   }
 
-  @Action
-  async getIdeas() {
-    const response = await $axios.$get("/ideas");
-    this.setIdeas(response.ideas);
+  @Action({
+    commit: "setIdeas"
+  })
+  async getIdeas(payload: any) {
+    let query: string = `/ideas?page=${payload.page}`;
+    if (payload.types && payload.types.length)
+      query += `&types=${payload.types}`;
+    return $axios.$get(query);
   }
 }
 
