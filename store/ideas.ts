@@ -13,7 +13,7 @@ class IdeaModule extends VuexModule {
   @Mutation
   setIdeas(response: any) {
     this.ideas = response.ideas;
-    this.pagination = response.meta;
+    if (response.meta) this.pagination = response.meta;
   }
 
   @Action({
@@ -23,6 +23,9 @@ class IdeaModule extends VuexModule {
     let query: string = `/ideas?page=${payload.page}`;
     if (payload.types && payload.types.length)
       query += `&types=${payload.types}`;
+    if (payload.rating)
+      query += `&min_rating=${payload.rating.min}&max_rating=${payload.rating.max}`;
+    if (payload.searchQuery) query += `&search_query=${payload.searchQuery}`;
     return $axios.$get(query);
   }
 }
